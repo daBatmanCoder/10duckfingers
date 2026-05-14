@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10 Duck Fingers</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='14' cy='14' r='12' fill='%23f3be34'/><circle cx='19' cy='12' r='1.5' fill='%23111'/><path d='M22 13 L31 12 L31 17 L22 17 Z' fill='%23e76d2e'/><ellipse cx='12' cy='22' rx='10' ry='4' fill='%23e0ad22'/></svg>"
+    />
+  </head>
+  <body>
+    <div id="systemNotice" class="system-notice is-hidden" role="status" aria-live="polite"></div>
+    <div id="homeView" class="home-view">
+      <aside class="home-sidebar">
+        <div class="home-logo">
+          <svg class="duck-mark" viewBox="0 0 40 28" width="24" height="18" aria-hidden="true" focusable="false">
+            <ellipse cx="18" cy="18" rx="14" ry="6" fill="currentColor"/>
+            <circle cx="30" cy="10" r="5" fill="currentColor"/>
+            <path d="M33 11 L40 10 L40 13 L33 13 Z" fill="#e76d2e"/>
+            <circle cx="31" cy="9" r="0.9" fill="#111"/>
+          </svg>
+          10DUCKFINGERS
+        </div>
+        <div class="home-lang">English ▼</div>
+        <nav class="home-menu">
+          <a href="#" class="home-menu-item home-menu-item-active" data-action="start-test">Typing test</a>
+        </nav>
+      </aside>
+      <main class="home-main">
+        <svg class="hero-duck" viewBox="0 0 220 140" aria-hidden="true" focusable="false">
+          <ellipse class="hero-duck-pond" cx="110" cy="118" rx="100" ry="10" />
+          <ellipse class="hero-duck-ripple" cx="110" cy="118" rx="60" ry="6" />
+          <ellipse class="hero-duck-ripple" cx="110" cy="118" rx="35" ry="4" />
+          <ellipse cx="110" cy="100" rx="55" ry="22" fill="#f3be34"/>
+          <circle cx="160" cy="80" r="20" fill="#f3be34"/>
+          <path d="M173 82 L210 78 L210 92 L173 92 Z" fill="#e76d2e"/>
+          <circle cx="166" cy="76" r="2.4" fill="#111"/>
+          <circle cx="166" cy="76" r="0.9" fill="#fff"/>
+          <path d="M70 100 Q60 90 70 84 L80 92 Z" fill="#e0ad22"/>
+        </svg>
+        <div class="home-center">
+          <div class="home-mark">10DUCKFINGERS</div>
+          <h1 class="home-headline">Practice typing speed — word drills, timer, and local stats.<br/><span class="home-tagline">Waddle in. Sprint out.</span></h1>
+          <div class="home-actions">
+            <button id="startTypingBtn" class="home-btn home-btn-primary" type="button">
+              START TYPING TEST
+            </button>
+            <button id="startCompetitionBtn" class="home-btn home-btn-secondary" type="button">
+              START COMPETITION
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="testView" class="test-view is-hidden">
+      <header class="top-header">
+        <div class="top-header-inner">
+          <div class="logo-area">
+            <div class="logo-mark">
+              <svg class="duck-mark" viewBox="0 0 40 28" width="22" height="16" aria-hidden="true" focusable="false">
+                <ellipse cx="18" cy="18" rx="14" ry="6" fill="currentColor"/>
+                <circle cx="30" cy="10" r="5" fill="currentColor"/>
+                <path d="M33 11 L40 10 L40 13 L33 13 Z" fill="#e76d2e"/>
+                <circle cx="31" cy="9" r="0.9" fill="#111"/>
+              </svg>
+              10DUCKFINGERS
+            </div>
+            <div class="logo-subtitle">Waddle faster on the keys</div>
+          </div>
+          <nav class="top-nav" aria-label="Site links">
+            <a href="#">How it works</a>
+            <a href="#">Word lists</a>
+            <a href="#">Privacy</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="page-wrap">
+        <aside class="sidebar">
+          <div class="side-label">Modes</div>
+
+          <div class="menu-group">
+            <div class="menu-item menu-item-active" id="sidebarModeStandard" data-mode="standard" role="button" tabindex="0">
+              <div class="menu-title">Typing Test</div>
+              <div class="menu-sub">~400 most common · ≤6 letters · filtered (EN)</div>
+            </div>
+            <div class="menu-item" id="sidebarModeAdvanced" data-mode="advanced" role="button" tabindex="0">
+              <div class="menu-title">Harder word pool</div>
+              <div class="menu-sub">Full 5k list · skews toward rarer words</div>
+            </div>
+          </div>
+        </aside>
+
+        <section class="content">
+          <div class="language-switch">
+            <select id="langSelect" class="lang-select" aria-label="Choose typing test language">
+              <option value="en">English</option>
+              <option value="de">Deutsch</option>
+              <option value="fr">Français</option>
+              <option value="es">Español</option>
+              <option value="it">Italiano</option>
+              <option value="pt">Português</option>
+              <option value="nl">Nederlands</option>
+              <option value="pl">Polski</option>
+              <option value="tr">Türkçe</option>
+              <option value="sv">Svenska</option>
+            </select>
+            <span class="lang-hint">Switch Typing Test language</span>
+            <button
+              type="button"
+              id="toggleAdvancedWordsBtn"
+              class="advanced-words-btn"
+              aria-pressed="false"
+              title="Default: very common short words only. Advanced: full list with extra weight on rarer, longer entries."
+            >
+              Advanced words
+            </button>
+          </div>
+
+          <div class="stats-toolbar">
+            <button
+              id="toggleStatsBtn"
+              class="stats-toggle"
+              type="button"
+              aria-pressed="false"
+            >
+              Hide stats
+            </button>
+          </div>
+
+          <div class="stats" id="statsBlock">
+            <div><span class="stat-label">WPM:</span> <span id="wpm">0</span></div>
+            <div><span class="stat-label">Key Strokes:</span> <span id="keystrokes">0</span></div>
+            <div><span class="stat-label">Words:</span> <span id="words">0</span></div>
+          </div>
+
+          <div class="word-box" id="wordBox">
+            <div class="word-stream" id="wordStream"></div>
+          </div>
+
+          <div class="input-row">
+            <input
+              id="typingInput"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Typing input"
+              title="Type words here"
+            />
+            <div class="timer" id="timer">1:00</div>
+            <button class="reset-button" id="resetButton" aria-label="Restart test">↻</button>
+          </div>
+
+          <section id="resultsPanel" class="results-panel is-hidden" aria-live="polite">
+            <div class="result-card-v2">
+              <header class="result-card-v2-header">
+                <span class="result-card-v2-title">Result</span>
+                <span class="result-card-v2-title-sub">This run</span>
+              </header>
+              <div class="result-card-v2-body">
+                <div id="resultRibbon" class="result-ribbon is-hidden" aria-hidden="true">Top 1 %</div>
+                <div class="result-wpm-block">
+                  <div class="result-wpm-line">
+                    <span id="finalWpm">0</span> WPM
+                  </div>
+                  <div class="result-wpm-sub">(words per minute)</div>
+                </div>
+                <div class="result-stats-table">
+                  <div class="result-stat-row">
+                    <span class="result-stat-label">Keystrokes</span>
+                    <span class="result-stat-value">
+                      (<span id="finalKeystrokesCorrect" class="stat-k-good">0</span>
+                      <span class="stat-k-sep"> | </span>
+                      <span id="finalKeystrokesWrong" class="stat-k-bad">0</span>)
+                      <span id="finalKeystrokesTotal" class="stat-k-total">0</span>
+                    </span>
+                  </div>
+                  <div class="result-stat-row">
+                    <span class="result-stat-label">Accuracy</span>
+                    <span class="result-stat-value" id="finalAccuracy">0%</span>
+                  </div>
+                  <div class="result-stat-row">
+                    <span class="result-stat-label">Correct words</span>
+                    <span class="result-stat-value stat-words-good" id="finalWords">0</span>
+                  </div>
+                  <div class="result-stat-row">
+                    <span class="result-stat-label">Wrong words</span>
+                    <span class="result-stat-value stat-words-bad" id="finalWrongWords">0</span>
+                  </div>
+                </div>
+                <div class="result-footer-actions">
+                  <button id="tryAgainBtn" class="result-footer-btn primary" type="button">
+                    Try again
+                  </button>
+                  <button id="copyResultBtn" class="result-footer-btn" type="button">
+                    Copy results
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </main>
+      <div class="bottom-tabs" aria-hidden="true">
+        <div class="tab">Local stats only</div>
+        <div class="tab">No account</div>
+        <div class="tab">Play offline</div>
+        <div class="tab tab-soft">made with ducks</div>
+      </div>
+    </div>
+
+    <script src="word-banks.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
