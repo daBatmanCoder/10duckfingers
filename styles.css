@@ -623,6 +623,22 @@ body {
   box-sizing: border-box;
 }
 
+.legal-footnote {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  text-align: center;
+  font-family: Verdana, Geneva, "Segoe UI", Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: rgba(180, 200, 220, 0.55);
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  z-index: 1;
+}
+
 .results-panel {
   position: fixed;
   inset: 0;
